@@ -1,0 +1,51 @@
+import plantas.*
+import parcelas.*
+
+describe "plantas" {
+	const quinoa1 = new Quinoa(anioDeObtencion = 2003, altura = 0.5, horasDeSolToleradas = 12)
+	const quinoa2 = new Quinoa(anioDeObtencion = 2001, altura = 0.5, horasDeSolToleradas = 9)
+	
+	const soja1 = new Soja(anioDeObtencion = 2009, altura = 0.6)
+	
+	const menta1 = new Menta(anioDeObtencion = 2003, altura = 1)
+	const menta2 = new Menta(anioDeObtencion = 2010, altura = 0.3)
+	
+	const parcela1 = new Parcela(ancho = 20, largo = 1, horasDeSolPorDia = 8)
+	
+	test "menta"{
+		assert.that(menta1.daNuevasSemillas())
+		assert.equals(menta1.espacioQueOcupa(), 3)
+		assert.notThat(menta2.daNuevasSemillas())
+		assert.equals(menta2.espacioQueOcupa(), 0.9)
+	}
+	
+	test "quinoa"{
+		assert.that(quinoa1.daNuevasSemillas())
+		assert.notThat(quinoa2.daNuevasSemillas())
+	}
+	
+	test "soja"{
+		assert.notThat(soja1.daNuevasSemillas())
+		assert.equals(soja1.horasDeSolQueTolera(), 7)
+		assert.equals(soja1.espacioQueOcupa(), 0.3)
+	}
+
+	test "Parcela"{
+		assert.equals(parcela1.cantidadMaximaDePlantas(), 4)
+		assert.equals(parcela1.cantidadMaximaDePlantas(), 4)
+	}
+}
+
+
+/*
+Observaciones: El ejemplo de la Quinoa está mal en el enunciado,
+	ya que para que de semillas el año de obtención de la semilla
+	debe ser anterior al 2005.
+	Le modifique el año en el test para corregirlo.
+ */
+
+
+
+
+
+
